@@ -1,0 +1,123 @@
+@model BooleanMinimizator.Models.BooleanMinimizatorModel
+
+@{
+    ViewData["Title"] = "Boolean minimizer calculator";
+}
+
+<div class="calculator">
+    <h2>Калькулятор булевых функций</h2>
+
+    <form asp-action="Index" method="post">
+        <label for="inputField">Введите функцию или её вектор:</label>
+        <input type="text" asp-for="InputFunction" id="inputField" placeholder="Например: 01110110">
+
+        <button type="submit">Построить</button>
+
+        <div class="keyboard" id="keyboard">
+            <button type="button" class="key">∨</button>
+            <button type="button" class="key">∧</button>
+            <button type="button" class="key">¬</button>
+            <button type="button" class="key">⊕</button>
+            <button type="button" class="key">→</button>
+            <button type="button" class="key">↔</button>
+            <button type="button" class="key">(</button>
+            <button type="button" class="key">)</button>
+            <button type="button" class="key">w</button>
+            <button type="button" class="key">x</button>
+            <button type="button" class="key">y</button>
+            <button type="button" class="key">z</button>
+        </div>
+
+        <button type="button" id="toggleKeyboard">Скрыть клавиатуру</button>
+    </form>
+
+    @if (!string.IsNullOrEmpty(Model.ResultMessage))
+    {
+        <div id="output">
+            <p>@Model.ResultMessage</p>
+        </div>
+    }
+
+    @if (Model.FunctionExpression is not null)
+    {
+        <div class="alert alert-secondary mt-3">
+            <strong>Функция:</strong> @Model.FunctionExpression
+        </div>
+    }
+
+    @if (Model.PolizOutput is not null)
+    {
+        <div class="alert alert-secondary mt-3">
+            <strong>ПОЛИЗ функции:</strong> @Model.PolizOutput
+        </div>
+    }
+
+    @if (Model.VectorOutput is not null)
+    {
+        <div class="alert alert-info mt-3">
+            <strong>Вектор функции:</strong> @Model.VectorOutput
+        </div>
+    }
+
+    @if (Model.TruthTable != null && Model.TruthTable.Any())
+    {
+        <div class="mt-3">
+            <h3>Таблица истинности</h3>
+            <table class="truth-table">
+                <thead>
+                    <tr>
+                        @foreach (var variable in Model.TruthTable.First().Keys)
+                        {
+                            <th>@variable</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var row in Model.TruthTable)
+                    {
+                        <tr>
+                            @foreach (var variable in row.Keys)
+                            {
+                                <td>@(row[variable] ? "1" : "0")</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+
+    <!-- Вывод МКНФ -->
+    @if (!string.IsNullOrEmpty(Model.MKNFOutput))
+    {
+        <div class="alert alert-success mt-3">
+            <strong>МКНФ:</strong> @Model.MKNFOutput
+        </div>
+    }
+
+    <!-- Вывод МДНФ -->
+    @if (!string.IsNullOrEmpty(Model.MDNFOutput))
+    {
+        <div class="alert alert-warning mt-3">
+            <strong>МДНФ:</strong> @Model.MDNFOutput
+        </div>
+    }
+</div>
+
+<section class="instructions">
+    <h2>Как пользоваться калькулятором</h2>
+    <ul>
+        <li>Введите в поле логическую функцию или её вектор.</li>
+        <li>Используйте клавиатуру для быстрого ввода символов.</li>
+        <li>Нажмите на кнопку "Построить" для расчёта минимизации.</li>
+    </ul>
+</section>
+
+<button type="button" id="helpButton">Поддержка</button>
+
+<div id="supportText" class="support-text" style="display:none;">
+    <h3>Как получить поддержку</h3>
+    <p>Если у вас возникли проблемы, обратитесь к нам по электронной почте.</p>
+    <p><strong>Email:</strong> support@website.com</p>
+    <p>Мы всегда готовы помочь!</p>
+</div>

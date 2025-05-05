@@ -1,0 +1,216 @@
+/* Подключение шрифта Bebas Neue */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif; /* Шрифт для клавиш */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+.calculator {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: auto;
+}
+
+h1, h2 {
+  font-size: 22px;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 15px 0;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+}
+
+button {
+  font-family: 'Poppins', sans-serif; /* Шрифт для клавиш */
+  background-color: #555;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-top: 20px; /* Опускаем кнопку на 20px */
+}
+
+button:hover {
+  background-color: #333;
+}
+
+/* СТИЛИ КЛАВИАТУРЫ */
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 колонки */
+  gap: 10px;
+  margin-top: 15px;
+  padding: 15px;
+  background: linear-gradient(145deg, #ffffff, #ffffff);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  border: 2px solid #888;
+}
+
+.key {
+  font-family: 'Poppins', sans-serif; /* Шрифт для клавиш */
+  background: linear-gradient(145deg, #444, #555); /* Градиент черного */
+  color: white;
+  border: none;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 15;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 1px 2px rgba(255, 255, 255, 0.2);
+}
+
+.key:hover {
+  background: linear-gradient(145deg, #222, #333); /* Темно-серый при наведении */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15), inset 0 2px 3px rgba(255, 255, 255, 0.1);
+}
+
+#output {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.instructions {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  max-width: 825px;
+  margin: 30px auto;
+  text-align: left;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+#toggleKeyboard {
+  background: linear-gradient(145deg, #555, #555);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+
+/* Общие стили таблиц */
+.truth-table, .karnaugh-map {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.truth-table th, .truth-table td,
+.karnaugh-map th, .karnaugh-map td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.truth-table th, .karnaugh-map th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.truth-table tr:nth-child(even),
+.karnaugh-map tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.truth-table tr:hover,
+.karnaugh-map tr:hover {
+  background-color: #e0e0e0;
+}
+
+/* Отдельное оформление ячеек карты Карно */
+.karnaugh-map td.one {
+  background-color: #a5d6a7; /* Светло-зеленый */
+  font-weight: bold;
+}
+
+.karnaugh-map td.zero {
+  font-weight: bold;
+}
+
+/* Стили для кнопки Поддержка */
+#helpButton {
+  background: linear-gradient(145deg, #555, #555);
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-bottom: 10px;
+}
+
+/* Стили для блока с текстом Поддержки */
+.support-text {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для таблицы истинности */
+.truth-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+    .truth-table th,
+    .truth-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .truth-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    .truth-table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    .truth-table tr:hover {
+        background-color: #e0e0e0;
+    }
+
+/* Увеличиваем отступы */
+.alert {
+    margin-top: 20px; /* Отступ сверху */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Добавляем пояснения */
+.form-text.text-muted {
+    font-size: 0.8rem;
+    color: #6c757d;
+    display: block;
+    margin-top: 5px;
+}
