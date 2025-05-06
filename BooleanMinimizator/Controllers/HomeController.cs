@@ -13,35 +13,30 @@ namespace BooleanMinimizator.Controllers
             return View(new BooleanMinimizatorModel());
         }
 
-        [HttpPost]
         public IActionResult Index(BooleanMinimizatorModel model)
         {
             if (!string.IsNullOrEmpty(model.InputFunction))
             {
                 try
                 {
-                    // Парсим входную формулу
                     var syntaxAnalyzer = new SyntaxAnalyzer();
                     Node rootNode = syntaxAnalyzer.Parse(model.InputFunction);
 
-                    // Строим вектор и таблицу истинности
                     var functionVectorBuilder = new FunctionVectorBuilder();
                     model.VectorOutput = functionVectorBuilder.BuildVector(rootNode);
                     model.TruthTable = functionVectorBuilder.BuildTruthTable(rootNode);
-
-                    // Получаем ПОЛИЗ
                     model.PolizOutput = string.Join(" ", syntaxAnalyzer.GetPOLIZ(rootNode));
-
-                    // Вычисляем МКНФ и МДНФ
                     model.MKNFOutput = BooleanMinimizer.MinimizeMKNF(model.VectorOutput);
                     model.MDNFOutput = BooleanMinimizer.MinimizeMDNF(model.VectorOutput);
 
-                    // Успешное завершение
+                    // Добавлено построение карты Карно
+                    var karnaughBuilder = new KarnaughMapBuilder();
+                    model.KarnaughMap = karnaughBuilder.Build(rootNode);
+
                     model.ResultMessage = "Функция успешно распознана!";
                 }
                 catch (Exception ex)
                 {
-                    // Обработка ошибок
                     model.ResultMessage = $"Ошибка: {ex.Message}";
                 }
             }

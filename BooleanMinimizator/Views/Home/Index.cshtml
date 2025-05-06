@@ -102,6 +102,39 @@
             <strong>МДНФ:</strong> @Model.MDNFOutput
         </div>
     }
+
+    @if (Model.KarnaughMap != null && Model.KarnaughMap.Any())
+    {
+        <div class="mt-3">
+            <h3>Карта Карно</h3>
+            <table class="karnaugh-map">
+                @foreach (var row in Model.KarnaughMap)
+                {
+                    <tr>
+                        @foreach (var cell in row)
+                        {
+                            if (row == Model.KarnaughMap.First())
+                            {
+                                <th>@cell</th>
+                            }
+                            else if (cell == "1")
+                            {
+                                <td class="one">@cell</td>
+                            }
+                            else if (cell == "0")
+                            {
+                                <td class="zero">@cell</td>
+                            }
+                            else
+                            {
+                                <td>@cell</td>
+                            }
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    }
 </div>
 
 <section class="instructions">

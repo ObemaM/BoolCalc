@@ -17,5 +17,7 @@ namespace BooleanMinimizator.Models
         public string MKNFOutput { get; set; }      // Минимальная конъюнктивная нормальная форма
 
         public string MDNFOutput { get; set; }      // Максимальная дизъюнктивная нормальная форма
+
+        public List<List<string>> KarnaughMap { get; set; }
     }
 }
