@@ -84,24 +84,15 @@ namespace BooleanMinimizerLibrary
             return node;
         }
 
-        private Node Xor()
-        {
-            Node node = Or();
-            while (currentChar == '⊕')
-            {
-                NextChar();
-                node = new Node(NodeType.Xor, null, node, Or());
-            }
-            return node;
-        }
-
-        private Node Or()
+        private Node OrXor()
         {
             Node node = And();
-            while (currentChar == '∨')
+            while (currentChar == '∨' || currentChar == '⊕')
             {
+                char op = currentChar;
                 NextChar();
-                node = new Node(NodeType.Or, null, node, And());
+                NodeType type = op == '∨' ? NodeType.Or : NodeType.Xor;
+                node = new Node(type, null, node, And());
             }
             return node;
         }
